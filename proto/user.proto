@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package protoUser;
+
+option go_package = "gen/user;protoUser";
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+    bool confirmed = 5;
+}
+service UserService {
+    rpc Create (CreateRequest) returns (CreateResponse);
+    rpc ReadById (ReadByIdRequest) returns (ReadByIdResponse);
+    rpc ReadByEmail (ReadByEmailRequest) returns (ReadByEmailResponse);
+    rpc UpdateProfile (UpdateProfileRequest) returns (UpdateProfileResponse);
+    rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse);
+}
+
+message CreateRequest {
+    User user = 1;
+}
+
+message CreateResponse {
+    string id = 1;
+}
+
+message ReadByIdRequest {
+    string id = 1;
+}
+
+message ReadByIdResponse {
+    User user = 1;
+}
+
+message ReadByEmailRequest {
+    string email = 1;
+}
+
+message ReadByEmailResponse {
+    string email = 1;
+}
+
+message UpdateProfileRequest {
+    User user = 1;
+}
+
+message UpdateProfileResponse {
+    reserved 1;
+}
+
+message UpdatePasswordRequest {
+    User user = 1;
+}
+
+message UpdatePasswordResponse {
+    reserved 1;
+}
